@@ -2,6 +2,8 @@
 
 Descriptive, persistent marks in Neovim with quickfix list capability.
 
+<img width="471" alt="vmark" src="https://github.com/user-attachments/assets/631aa449-a60f-4c2b-a080-dce7fb2a6c2c" />
+
 ### Example Config (lazy.nvim)
 
 ```lua
