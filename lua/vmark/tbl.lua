@@ -197,7 +197,7 @@ function tbl.spread(...)
             end
         end
     end
-    return table(result)
+    return result
 end
 
 return tbl
