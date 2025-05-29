@@ -120,8 +120,8 @@ end
 --- @param bufnr integer
 --- @param lnum integer
 function M.remove(bufnr, lnum)
-    local marks = table(vim.api.nvim_buf_get_extmarks(
-        0, state.nsid, {lnum - 1, 0}, {lnum - 1, 0}, { }))
+    local marks = vim.api.nvim_buf_get_extmarks(
+        0, state.nsid, {lnum - 1, 0}, {lnum - 1, 0}, { })
     local markIds = tbl.map(marks, function(mark)
         return mark[1]
     end)
@@ -140,8 +140,8 @@ end
 --- @param bufnr integer
 --- @param lnum integer
 function M.echo(bufnr, lnum)
-    local marks = table(vim.api.nvim_buf_get_extmarks(
-        0, state.nsid, {lnum - 1, 0}, {lnum - 1, 0}, { }))
+    local marks = vim.api.nvim_buf_get_extmarks(
+        0, state.nsid, {lnum - 1, 0}, {lnum - 1, 0}, { })
     local markIds = tbl.map(marks, function(mark)
         return mark[1]
     end)
@@ -262,7 +262,7 @@ function M.load(bufnr)
     vim.api.nvim_buf_clear_namespace(bufnr, state.nsid, 0, -1)
     local lines = vim.api.nvim_buf_get_lines(
         bufnr, 0, -1, true)
-    local items = table(vim.json.decode(json))
+    local items = vim.json.decode(json)
     local validItems = tbl.filter(items, function(item)
         return not item.line or item.line == lines[item.lnum]
     end)
@@ -322,7 +322,7 @@ function M.recursiveQuickfix()
     for _, path in ipairs(paths) do
         local json = vim.fn.readfile(path)[1]
         if json then
-            local items = table(vim.json.decode(json))
+            local items = vim.json.decode(json)
             local fpath = cwd .. str.slice(path, #root + 1)
             for _, item in ipairs(items) do
                 table.insert(qflist, {
